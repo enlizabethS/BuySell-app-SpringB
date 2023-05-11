@@ -6,6 +6,9 @@
 <body>
 <h1>BUYSELL</h1> <hr>
 <h4>Description about product:</h4>
+<img src="/images/${project.images.get(0)}" height="60px"/><br> <br>
+<img src="/images/${project.images.get(1)?if_exists}" height="60px"/><br> <br>
+<img src="/images/${project.images.get(2)?if_exists}" height="60px"/><br> <br>
 <b> Product name: </b>${product.title}<br>
 <b> Description: </b>${product.description}<br>
 <b> Price: </b>${product.price}<br>
