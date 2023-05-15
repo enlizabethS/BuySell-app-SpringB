@@ -4,11 +4,17 @@
     <title>BUYSELL</title>
 </head>
 <body>
-<h1>BUYSELL | <a href="/login">Sign in</a></h1><hr>
+<h1>BUYSELL </h1><hr>
+<#if user.email??>
+<h3>Name: <i>${user.name}</i></h3>
 <form action="/logout" method="post">
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Log out"/>
 </form>
+<#else>
+<a href="/login">Sign in</a>
+</#if>
+<hr>
 <h4>List of products that can be purchased:</h4>
 <form action="/" method="get">
     Search by product name: <input type="text" name="title"><br>
@@ -21,6 +27,7 @@
 <#else>
 <h3>There are no products</h3>
 </#list>
+<#if user.email??>
 <hr>
 <h3>Create new product</h3>
 <form action="/product/create" method="post" enctype="multipart/form-data">
@@ -32,8 +39,9 @@
     First image: <input type="file" name="file1" lang="en"/><br><br>
     Second image: <input type="file" name="file2" lang="en"/><br><br>
     Third image: <input type="file" name="file3" lang="en"/><br><br>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Add product"/>
 </form>
-
+</#if>
 </body>
 </html>

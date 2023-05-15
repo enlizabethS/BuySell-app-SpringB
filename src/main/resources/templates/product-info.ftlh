@@ -15,12 +15,8 @@
 <b> Description: </b>${product.description}<br>
 <b> Price: </b>${product.price}<br>
 <b> City: </b>${product.city}<br>
-<b> Firstname: </b>${product.author}<br>
-<hr>
+<b> Firstname: </b><a href="/user/${product.user.id}"> ${product.user.name}</a><br>
 
-<form action="/product/delete/${product.id}" method="post">
-    <input type="submit" value="Delete"/>
-</form>
 
 </body>
 </html>
