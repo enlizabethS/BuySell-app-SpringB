@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <title>BUYSELL</title>
+    <link rel="stylesheet" href="style.css" type=src/main/resources/static/css/style.css/>
 </head>
 <body>
 <h1>BUYSELL</h1> <hr>
-<h4>Authorization</h4>
-
+<h4 id="authorization">Authorization</h4>
 <form action="/login" method="post">
     E-mail : <input type="email" name="username"><br><br>
     Password : <input type="password" name="password"><br><br>

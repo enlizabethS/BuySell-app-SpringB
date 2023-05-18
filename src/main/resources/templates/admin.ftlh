@@ -6,13 +6,14 @@
 <body>
 <h1>BUYSELL</h1> <hr>
 <h4>Admin panel</h4>
-<table>
+<table border="1">
     <tr>
         <th>Email</th>
         <th>Phone number</th>
         <th>Active</th>
         <th>Role</th>
         <th>Ban</th>
+        <th>Delete</th>
         <th>Editing</th>
         <th>Details</th>
     </tr>
@@ -20,13 +21,19 @@
     <tr>
         <th>${user.email}</th>
         <th>${user.phoneNumber}</th>
-        <th>${user.active}</th>
-        <th><#list user.roles as role><${role}<#sep>, </#list></th>
+        <th><#if user.active>true <#else>false</#if></th>
+        <th><#list user.roles as role>${role}</#list></th>
         <th>
-            <form action="/admin/user/ban/${user.id}">
+            <form action="/admin/user/ban/${user.id}" method="post">
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <input type="submit" value="BAN">
-        </form>
+            </form>
+        </th>
+        <th>
+            <form action="/admin/user/delete/${user.id}" method="post">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">
+                <input type="submit" value="Delete">
+            </form>
         </th>
         <th><a href="/admin/user/edit/${user.id}"> Editing</a></th>
         <th><a href="/user/${user.id}"> Details</a></th>

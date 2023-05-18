@@ -11,7 +11,10 @@
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Log out"/>
 </form>
-<#else>
+<#if user.isAdmin()>
+  <a href="/admin">Admin Panel</a>
+</#if>
+  <#else>
 <a href="/login">Sign in</a>
 </#if>
 <hr>

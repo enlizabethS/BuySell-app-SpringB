@@ -1,5 +1,7 @@
 package com.example.buysell.controllers;
 
+import com.example.buysell.enums.Role;
+import com.example.buysell.models.User;
 import com.example.buysell.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -8,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,4 +30,21 @@ public class AdminController {
         userService.banUser(id);
         return "redirect:/admin";
     }
+    @GetMapping("/admin/user/edit/{user}")
+    public String userEdit(@PathVariable("user") User user, Model model){
+        model.addAttribute("user",user);
+        model.addAttribute("roles", Role.values());
+        return "user-edit";
+    }
+    @GetMapping("/admin/user/edit")
+    public String userEdit(@RequestParam("userId") User user, @RequestParam Map<String,String>form){
+        userService.changeUserRole(user,form);
+        return "redirect:/admin";
+    }
+    @PostMapping("/admin/user/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id){
+        userService.deleteUserById(id);
+        return "redirect:/admin";
+    }
 }
+
