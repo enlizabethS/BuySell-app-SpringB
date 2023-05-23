@@ -1,33 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>SHOP</title>
-</head>
-<body style="background: rgb(185,163,55);
-background: linear-gradient(90deg, rgba(185,163,55,1) 37%, rgba(203,175,35,1) 59%, rgba(225,198,21,1) 79%);
-height:600px;">
-<h1 style="color: white; background-color:#6f6223; font-size: 50px;
- padding: 40px; margin:0px; display: flex; justify-content:space-between;">ProductShop</h1> <hr>
-<div class="container-reg" style="
-color: white;
-width:1250px;
-height:650px;
-margin:0px;">
-    <div class="registration" style="padding: 25px; margin: 80px 200px 200px 350px; font-size: 30px; border: 4px double #574d20; background-color:#6f6223; text-align: center; ">
-<h4>Registration</h4>
-
-<form action="/registration" method="post">
-    User name : <input type="text" name="name"/><br><br>
-    E-mail : <input type="email" name="email"/><br><br>
-    Phone number : <input type="text" name="phoneNumber"/><br><br>
-    Password : <input type="password" name="password"/><br><br>
-    <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <input style="border:none; background-color:#a89e16; color: white; font-size: 25px; padding:15px; border-radius: 10px" type="submit" value="Register"/>
-</form>
-<#if errorMessage??>
-<h2 style="color: red">${errorMessage}</h2>
-</#if>
-    </div>
-</div>
-</body>
-</html>
+<#import "blocks/template.ftlh" as t>
+<@t.template user>
+    <h1 style="text-align: center">Registration</h1>
+    <hr>
+    <form action="/registration" method="post">
+        <div class="form-group">
+            <label for="name">Username</label>
+            <input type="text" class="form-control" required id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" id="email" required name="email">
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone number</label>
+            <input type="text" class="form-control" id="phoneNumber" required name="phoneNumber">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" required name="password">
+        </div>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <button type="submit" style="width: 100%" class="btn btn-dark">Register</button>
+    </form>
+    <#if errorMessage??>
+        <h2 style="color: red">${errorMessage}</h2>
+    </#if>
+</@t.template>

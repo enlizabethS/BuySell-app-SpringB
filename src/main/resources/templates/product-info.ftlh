@@ -1,34 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>SHOP</title>
-</head>
-<body style="background: rgb(185,163,55);
-background: linear-gradient(90deg, rgba(185,163,55,1) 37%, rgba(203,175,35,1) 59%, rgba(225,198,21,1) 79%);
-height:600px;">
-<div class="container-user-edit" style="
-color: white;
-width:1250px;
-height:650px;
-margin:0px;">
-<h1 class="header" style="color: white; background-color:#6f6223; font-size: 50px;
- padding: 20px; margin:0px;display: flex; flex-direction: row;
- justify-content:space-around; align-items: center; align-self: center;
- flex-basis: 120px;  position:relative;"> ProductShop</h1> <hr>
-    <div class="user-edit" style="padding: 25px; margin: 80px 200px 200px 350px; font-size: 30px;
-    border: 4px double #574d20; background-color:#6f6223; text-align: center; ">
-<h4>Description about product:</h4>
-<#list images as img >
-<img src="/images/${img.id}" height="60px" lang="en"/><br> <br>
-</#list>
-<!--<img src="/images/${project.images.get(1)?if_exists}" height="60px" lang="en"/><br> <br>-->
-<!--<img src="/images/${project.images.get(2)?if_exists}" height="60px" lang="en"/><br> <br>-->
-<b> Product name: </b>${product.title}<br>
-<b> Description: </b>${product.description}<br>
-<b> Price: </b>${product.price}<br>
-<b> City: </b>${product.city}<br>
-<b> Firstname: </b><a href="/user/${product.user.id}"> ${product.user.name}</a><br>
-</div>
-</div>
-</body>
-</html>
+<#import "blocks/template.ftlh" as t>
+<@t.template user>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <#list images as image>
+                <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+            </#list>
+        </ol>
+        <div class="carousel-inner">
+            <#list images as image>
+                <div class="carousel-item <#if image.previewImage>active</#if>">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                         role="img" aria-label=" :  " preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title></title>
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                        <text x="50%" y="50%" fill="#777" dy=".3em"></text>
+                    </svg>
+
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <a href="/images/${image.id}">
+                                <img class="product" style="height: 100px" src="/images/${image.id}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </#list>
+
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <hr>
+    <p><h1 style="text-align: center">${product.title} | ${product.price} ₽</h1></p>
+    <p style="text-align: center">${product.description}</p>
+    <p style="text-align: center"> Seller's phone number: <b>${authorProduct.phoneNumber}</b></p>
+
+    <hr>
+    <p style="text-align: center">
+        <a href="/user/${authorProduct.id}">
+            <img src="/static/images/avatar.png" alt="mdo" width="32" height="32" class="rounded-circle"> ${authorProduct.name}
+        </a>
+    </p>
+
+</@t.template>

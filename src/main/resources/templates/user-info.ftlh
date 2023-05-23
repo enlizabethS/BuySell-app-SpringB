@@ -1,33 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>SHOP</title>
-</head>
-<body style="background: rgb(185,163,55);
-background: linear-gradient(90deg, rgba(185,163,55,1) 37%, rgba(203,175,35,1) 59%, rgba(225,198,21,1) 79%);
-height:600px;">
-<h1 style="color: white; background-color:#6f6223; font-size: 50px;
- padding: 40px; margin:0px; display: flex; justify-content:space-between;">ProductShop</h1> <hr>
-<div class="container-u-info" style="
-color: white;
-width:1250px;
-height:600px;
-margin:0px;">
-    <div class="u-info" style="padding: 25px; margin: 80px 200px 200px 350px; font-size: 35px; border: 4px double #574d20; background-color:#6f6223; text-align: center; ">
-<h3 style="font-size: 30px;color: #473f1c;">Detailed information about the user</h3>
-<b>User name: </b>${user.name}<br>
-<b>Email: </b>${user.email}<br>
-<b>User phone number: </b>${user.phoneNumber}<br>
-<hr>
-<h4>User products: ${user.name}</h4>
-<#list products as product>
-<div>
-    <p><b>${product.title} <a>  </a> </b> ${product.price} ₽ | <a href="/product/${product.id}">Details</a></p>
-</div>
-<#else>
-<h3>There are no products</h3>
-</#list>
-</div>
-</div>
-</body>
-</html>
+<#import "blocks/template.ftlh" as t>
+<@t.template userByPrincipal>
+    <h1 style="text-align: center">User information</h1>
+    <hr>
+    <div style="text-align: center">
+            <img src="/static/images/avatar.png"
+                 style="border:2px solid black; border-radius: 20px" height="120">
+        <br>
+        <br>
+        <h2>${user.name}</h2>
+        <br>
+        Phone number: <b>${user.phoneNumber}</b>
+    </div>
+    <br>
+    <hr>
+    <h1 style="text-align: center">User's products ${user.name}</h1>
+    <br>
+    <div class="card-columns">
+        <#list products as product>
+            <a href="/product/${product.id}" class="product-link">
+                <div class="card text-white bg-dark my-3 product">
+
+                    <img src="/images/${product.previewImageId}"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.title}</h5>
+                        <p class="card-text">${product.price} ₽</p>
+                    </div>
+                    <div class="card-footer">
+                        ${product.user.name}
+                    </div>
+                </div>
+            </a>
+        <#else>
+            <h1 style="text-align: center">Not found</h1>
+        </#list>
+    </div>
+</@t.template>
