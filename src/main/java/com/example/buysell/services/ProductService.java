@@ -70,6 +70,7 @@ public class ProductService {
                 .orElse(null);
         if (product != null) {
             if (product.getUser().getId().equals(user.getId())) {
+//                productRepository.delete(product);
                 productRepository.delete(product);
                 log.info("Product with id = {} was deleted", id);
             } else {

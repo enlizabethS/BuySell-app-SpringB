@@ -13,7 +13,7 @@
                 </select>
             </div>
             <div class="form-group col-md-10">
-                <label for="searchWord">Search by ads</label>
+                <label for="searchWord"> Search by ads</label>
                 <input type="text" name="searchWord" <#if searchWord??>value="${searchWord}"</#if> class="form-control"
                        id="searchWord">
             </div>
@@ -30,7 +30,7 @@
                          class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">${product.title}</h5>
-                        <p class="card-text">${product.price} ₽</p>
+                        <p class="card-text">${product.price} $</p>
                     </div>
                     <div class="card-footer">
                         ${product.city}
